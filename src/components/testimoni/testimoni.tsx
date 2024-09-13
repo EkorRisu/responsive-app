@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Menggunakan ikon untuk tombol navigasi
-import Testimonials from "@/components/testimoni/testimonials"
-
+import Testimonials from "@/components/testimoni/testimonials";
 
 const testimonials = [
   {
@@ -46,6 +45,13 @@ const TestimonialSection = () => {
     );
   };
 
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (carousel) {
+      carousel.scrollLeft = currentIndex * carousel.offsetWidth;
+    }
+  }, [currentIndex]);
+
   return (
     <section className="py-12">
       <div className="flex flex-col items-center">
@@ -59,7 +65,7 @@ const TestimonialSection = () => {
         <div className="relative w-full max-w-5xl mx-auto">
           <div
             ref={carouselRef}
-            className="flex gap-5 overflow-x-auto scroll-snap-x snap-mandatory px-4 min-h-[420px] items-center scrollbar-hide"
+            className="flex gap-5 overflow-hidden scroll-snap-x snap-mandatory px-4 min-h-[420px] items-center scrollbar-hide"
             style={{ scrollBehavior: "smooth" }}
           >
             {testimonials.map((testimonial, index) => (
@@ -73,25 +79,24 @@ const TestimonialSection = () => {
                   name={testimonial.name}
                   title={testimonial.title}
                   rating={testimonial.rating}
-                  content={testimonial.content}
-                />
+                  content={testimonial.content} isActive={false}                />
               </div>
             ))}
           </div>
 
           {/* Navigation Buttons */}
-          <div className="absolute inset-0 flex justify-between items-center">
+          <div className="absolute inset-0 flex justify-between items-center px-4">
             <button
               onClick={handlePrev}
               aria-label="Previous"
-              className="p-2 bg-white shadow-md rounded-full hover:bg-gray-200 transition-all"
+              className="p-2 bg-white shadow-md rounded-full hover:bg-gray-200 transition-all focus:outline-none"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next"
-              className="p-2 bg-white shadow-md rounded-full hover:bg-gray-200 transition-all"
+              className="p-2 bg-white shadow-md rounded-full hover:bg-gray-200 transition-all focus:outline-none"
             >
               <FaArrowRight />
             </button>
