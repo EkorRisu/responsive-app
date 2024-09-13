@@ -7,7 +7,7 @@ const font = Lexend_Deca({ subsets: ['latin'], weight: '400' });
 
 const Hero = () => {
     return (
-        <div className={`bg-[url('/hero.svg')] bg-center bg-cover h-screen w-full pt-16 md:pt-20 lg:pt-24 z-10 relative ${font.className}`}>
+        <div className={`bg-[url('/hero.png')] bg-center bg-cover h-screen w-full pt-16 md:pt-20 lg:pt-24 z-10 relative ${font.className}`}>
             <div className="container py-4 px-6 sm:px-8 mx-auto xl:px-0 text-left">
                 <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-[100px]">
                     Instant collaboration <br /> for remote teams
